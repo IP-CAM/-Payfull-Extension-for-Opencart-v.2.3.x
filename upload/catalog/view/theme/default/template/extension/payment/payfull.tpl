@@ -155,12 +155,12 @@
 
     beforeSend: function() {
       $('.alert').remove();
-      $('#button-confirm').attr('disabled', true);
+      $('#button-confirm').attr('disabled', 'disabled');
       $('#payment').before('<div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_wait; ?></div>');
     },
 
     complete: function() {
-      $('#button-confirm').attr('disabled', false);
+      $('#button-confirm').removeAttr('disabled');
       $('.attention').remove();
     },
 
