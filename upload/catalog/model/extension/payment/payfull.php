@@ -92,6 +92,11 @@ class ModelExtensionPaymentPayfull extends Model {
 
 	//send data to bank 
 	public function send(){
+	    echo '<pre>';
+	    var_dump('send here');
+	    echo '</pre>';
+	    die;
+
 
 		$this->load->model('checkout/order');
 
