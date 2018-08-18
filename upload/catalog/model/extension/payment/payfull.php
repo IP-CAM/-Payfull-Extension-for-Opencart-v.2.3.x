@@ -118,6 +118,8 @@ class ModelExtensionPaymentPayfull extends Model {
         }
 
 		$bkmExist = (isset($this->request->post['useBKM']) AND $this->request->post['useBKM']);
+        $callbackUrl = $this->url->link('extension/payment/payfull/callback', true);
+        $callbackUrl = str_replace('http://', 'https://', $callbackUrl);
 		if($bkmExist){
 			$params = array(
 				"type"            => 'Sale',
@@ -126,7 +128,7 @@ class ModelExtensionPaymentPayfull extends Model {
 				"language"        => 'tr',
 				"client_ip"       => $_SERVER['REMOTE_ADDR'],
 				"payment_title"   => 'Order #'.$order_info['order_id'],
-				"return_url"      => $this->url->link('extension/payment/payfull/callback'),
+				"return_url"      => $callbackUrl,
 				"bank_id"         => 'BKMExpress',
 
 				"customer_firstname" => $order_info['firstname'],
@@ -153,7 +155,7 @@ class ModelExtensionPaymentPayfull extends Model {
 				"client_ip"       => $_SERVER['REMOTE_ADDR'],
 				"payment_title"   => 'Order #'.$order_info['order_id'],
 				"use3d"           => $user3d,
-				"return_url"      => $this->url->link('extension/payment/payfull/callback'),
+				"return_url"      => $callbackUrl,
 
 				"customer_firstname" => $order_info['firstname'],
 				"customer_lastname"  => $order_info['lastname'],
