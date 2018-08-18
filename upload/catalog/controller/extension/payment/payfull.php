@@ -488,7 +488,8 @@ class ControllerExtensionPaymentPayfull extends Controller {
 	}
 
 	public function callback() {
-		$this->load->model('extension/payment/payfull');
+        $this->load->model('checkout/order');
+        $this->load->model('extension/payment/payfull');
 
         $post = $this->request->post;
 
@@ -508,9 +509,7 @@ class ControllerExtensionPaymentPayfull extends Controller {
 		} else {
 			$order_id = 0;
 		}
-
-		$this->load->model('checkout/order');
-
+        
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		if ($order_info && $post['ErrorCode'] == '00' && ($hash == $post["hash"])) {
