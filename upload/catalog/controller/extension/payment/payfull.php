@@ -447,6 +447,12 @@ class ControllerExtensionPaymentPayfull extends Controller {
                 case(preg_match ('/^5[1-5]/', $cardNumber) >= 1):
                     return 'MASTERCARD';
                     break;
+                case(preg_match ('/^6', $cardNumber) >= 1):
+                    return 'MAESTRO';
+                    break;
+                case(preg_match ('/^9/', $cardNumber) >= 1):
+                    return 'TROY';
+                    break;
                 default:
                     return '';
                     break;
